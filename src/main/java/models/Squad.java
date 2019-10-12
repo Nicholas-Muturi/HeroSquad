@@ -5,7 +5,6 @@ import java.util.List;
 
 
 public class Squad {
-    private Hero newHero;
     private String squadName;
     private String cause;
     private static boolean isRegisteredHero = false;
@@ -14,14 +13,13 @@ public class Squad {
     private int squadId;
 
     public Squad(String name, String cause, Hero hero) {
-        this.newHero = hero;
         this.squadName = name.trim();
         this.cause = cause.trim();
         crossCheckHero(hero.getHeroID());
 
         if (isRegisteredHero) {
             hero.setSquadAlliance(squadName);
-            heroMembers.add(newHero.getName());
+            heroMembers.add(hero.getName());
             squadList.add(this);
             this.squadId = squadList.size();
         } else {
