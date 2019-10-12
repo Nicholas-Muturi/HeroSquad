@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @SuppressWarnings("ALL")
@@ -41,6 +42,13 @@ public class SquadTest {
     public void getSquadCause() {
         Squad squad = setupNewSquad(setupNewHero());
         assertTrue(squad.getCause() instanceof String);
+    }
+
+    @Test
+    public void addingHeroToExistingSquad() {
+        Squad squad = setupNewSquad(setupNewHero());
+        squad.addMembers(setupHero2());
+        assertEquals(2, squad.getMembers().size());
     }
 
     @After

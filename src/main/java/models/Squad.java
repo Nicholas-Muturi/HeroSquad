@@ -5,6 +5,7 @@ import java.util.List;
 
 
 public class Squad {
+    private Hero newHero;
     private String squadName;
     private String cause;
     private static boolean isRegisteredHero = false;
@@ -13,17 +14,16 @@ public class Squad {
     private int squadId;
 
     public Squad(String name, String cause, Hero hero) {
+        this.newHero = hero;
         this.squadName = name.trim();
         this.cause = cause.trim();
         crossCheckHero(hero.getHeroID());
 
         if (isRegisteredHero) {
             hero.setSquadAlliance(squadName);
-            heroMembers.add(hero);
+            heroMembers.add(newHero);
             squadList.add(this);
             this.squadId = squadList.size();
-
-            System.out.println(hero.getName() + "......." + hero.getSquadAlliance());
         } else {
             System.out.println("HERO ISN'T REGISTERED");
         }
@@ -35,6 +35,15 @@ public class Squad {
 
     public int getSquadId() {
         return squadId;
+    }
+
+    public void addMembers(Hero hero) {
+        heroMembers.add(hero);
+        System.out.println(this.squadName + "...." + this.heroMembers.size());
+    }
+
+    public List<Object> getMembers() {
+        return heroMembers;
     }
 
     public String getCause() {
@@ -49,7 +58,6 @@ public class Squad {
             }
         }
     }
-
 
     public void clearMemberLists() {
         heroMembers.clear();
