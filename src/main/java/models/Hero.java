@@ -85,6 +85,10 @@ public class Hero {
         }
     }
 
+    public void updateSquad(String newSquad) {
+        this.squadAlliance = newSquad;
+    }
+
     public static void deleteHero(int searchID) {
         heroRegistry.remove(searchID - 1);
     }

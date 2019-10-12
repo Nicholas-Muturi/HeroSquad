@@ -19,11 +19,15 @@ public class SquadTest {
     }
 
     private Hero setupHero2() {
-        return new Hero("Superman", 180, "Almost everything", "Kryptonite");
+        return new Hero("Iron Man", 30, "Money", "Ego");
     }
 
     private Squad setupNewSquad(Hero hero) {
         return new Squad("Justice League", "Just Exist", hero);
+    }
+
+    private Squad setupNewSquad2(Hero hero) {
+        return new Squad("Avengers", "Just Exist again", hero);
     }
 
     @Test
@@ -49,6 +53,30 @@ public class SquadTest {
         Squad squad = setupNewSquad(setupNewHero());
         squad.addMembers(setupHero2());
         assertEquals(2, squad.getMembers().size());
+    }
+
+    @Test
+    public void addHero_NotExeedLimitOf1_int() {
+        /* Change back limit to 1 before testing again */
+        Squad squad = setupNewSquad(setupNewHero());
+        squad.addMembers(setupHero2());
+        assertEquals(1, squad.getMembers().size());
+    }
+
+    @Test
+    public void moveHeroToAnotherSquad() {
+        Hero.clearHeroRegistry();
+        Hero hero1 = setupNewHero();
+        Hero hero2 = setupHero2();
+        Squad squad = setupNewSquad(hero1);
+        Squad squad2 = setupNewSquad(hero2);
+
+        assertEquals(1, squad.getMembers().size());
+        Squad.changeHeroSquad(hero1, squad2);
+        System.out.println(squad.getMembers());
+        System.out.println(squad2.getMembers());
+        assertEquals(0, squad.getMembers().size());
+        assertEquals(2, squad2.getMembers().size());
     }
 
     @After
