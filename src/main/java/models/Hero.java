@@ -52,6 +52,10 @@ public class Hero {
         return heroRegistry.get(searchID - 1);
     }
 
+    public static Hero deleteHero(int searchID) {
+        return heroRegistry.remove(searchID - 1);
+    }
+
     public static void clearHeroRegistry(){
         heroRegistry.clear();
     }

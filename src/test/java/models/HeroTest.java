@@ -4,8 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("ALL")
 public class HeroTest {
@@ -16,6 +15,10 @@ public class HeroTest {
 
     private Hero setupNewHero(){
         return new Hero ("Batman",45,"Money","Loneliness");
+    }
+
+    private Hero setupHero2() {
+        return new Hero("Superman", 180, "Almost everything", "Kryptonite");
     }
 
     @Test
@@ -51,7 +54,7 @@ public class HeroTest {
     @Test
     public void getHeroList_storeTwoHeroes_true() {
         Hero newHero = setupNewHero();
-        Hero anotherNewHero = new Hero("Superman",180,"Almost everything","Kryptonite");
+        Hero anotherNewHero = setupHero2();
         assertTrue(Hero.getHeroRegistry().contains(newHero));
         assertTrue(Hero.getHeroRegistry().contains(anotherNewHero));
     }
@@ -59,8 +62,18 @@ public class HeroTest {
     @Test
     public void findHero_searchForHeroById_String() {
         Hero newHero = setupNewHero();
-        Hero anotherNewHero = new Hero("Superman", 180, "Almost everything", "Kryptonite");
+        Hero anotherNewHero = setupHero2();
         assertEquals("Batman", Hero.findHero(1).getName());
+    }
+
+    @Test
+    public void deleteSingleHero() {
+        Hero newHero = setupNewHero();
+        Hero anotherNewHero = setupHero2();
+        Hero thirdHero = new Hero("Iron Man", 35, "Money", "Ego");
+        Hero.deleteHero(anotherNewHero.getHeroID());
+        assertFalse(Hero.getHeroRegistry().contains(anotherNewHero));
+        assertEquals(3, Hero.getHeroRegistry().get(1).getHeroID());
     }
 
     @After
