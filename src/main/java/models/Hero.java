@@ -85,8 +85,8 @@ public class Hero {
         }
     }
 
-    public static Hero deleteHero(int searchID) {
-        return heroRegistry.remove(searchID - 1);
+    public static void deleteHero(int searchID) {
+        heroRegistry.remove(searchID - 1);
     }
 
     public static void clearHeroRegistry(){

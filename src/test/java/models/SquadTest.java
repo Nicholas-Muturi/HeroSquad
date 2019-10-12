@@ -2,6 +2,9 @@ package models;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 @SuppressWarnings("ALL")
 public class SquadTest {
@@ -18,10 +21,27 @@ public class SquadTest {
         return new Hero("Superman", 180, "Almost everything", "Kryptonite");
     }
 
-    private Squad setupNewSquad() {
-        return new Squad("Avengers", "Defeat Thanos");
+    private Squad setupNewSquad(Hero hero) {
+        return new Squad("Justice League", "Just Exist", hero);
     }
 
+    @Test
+    public void squadInstanciatedCorrectly() {
+        Squad squad = setupNewSquad(setupNewHero());
+        assertTrue(squad instanceof Squad);
+    }
+
+    @Test
+    public void getSquadName() {
+        Squad squad = setupNewSquad(setupNewHero());
+        assertTrue(squad.getName() instanceof String);
+    }
+
+    @Test
+    public void getSquadCause() {
+        Squad squad = setupNewSquad(setupNewHero());
+        assertTrue(squad.getCause() instanceof String);
+    }
 
     @After
     public void tearDown() throws Exception {
