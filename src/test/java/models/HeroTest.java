@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @SuppressWarnings("ALL")
@@ -27,6 +28,12 @@ public class HeroTest {
     public void getHeroName_true() {
         Hero newHero = setupNewHero();
         assertTrue(newHero.getName() instanceof String);
+    }
+
+    @Test
+    public void getHeroAge_true() {
+        Hero newHero = setupNewHero();
+        assertEquals(40,newHero.getAge());
     }
 
     @After
