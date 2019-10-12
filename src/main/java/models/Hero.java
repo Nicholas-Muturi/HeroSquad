@@ -1,16 +1,23 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hero {
     private String name;
     private int age;
     private String specialPower;
     private String weakness;
+    private List<Hero> allHeroes = new ArrayList<>();
+    private int heroID;
 
     public Hero(String name, int age, String specialPower, String weakness) {
         this.name = name;
         this.age = age;
         this.specialPower = specialPower;
         this.weakness = weakness;
+        this.allHeroes.add(this);
+        this.heroID = allHeroes.size();
     }
 
     public void setSpecialPower(String specialPower) {
@@ -35,5 +42,13 @@ public class Hero {
 
     public String getWeakness() {
         return weakness;
+    }
+
+    public List<Hero> getAllHeroes() {
+        return allHeroes;
+    }
+
+    public int getHeroID() {
+        return heroID;
     }
 }

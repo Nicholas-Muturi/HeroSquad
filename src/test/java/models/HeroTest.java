@@ -23,7 +23,11 @@ public class HeroTest {
         assertTrue(newHero instanceof Hero);
     }
 
-
+    @Test
+    public void getHeroName_true() {
+        Hero newHero = setupNewHero();
+        assertTrue(newHero.getName() instanceof String);
+    }
 
     @After
     public void tearDown() throws Exception {
