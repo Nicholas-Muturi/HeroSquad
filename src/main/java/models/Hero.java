@@ -8,7 +8,7 @@ public class Hero {
     private int age;
     private String power;
     private String weakness;
-    private List<Hero> allHeroes = new ArrayList<>();
+    private static List<Hero> allHeroes = new ArrayList<>();
     private int heroID;
 
     public Hero(String name, int age, String power, String weakness) {
@@ -16,7 +16,7 @@ public class Hero {
         this.age = age;
         this.power = power;
         this.weakness = weakness;
-        this.allHeroes.add(this);
+        allHeroes.add(this);
         this.heroID = allHeroes.size();
     }
 
@@ -44,8 +44,12 @@ public class Hero {
         return weakness;
     }
 
-    public List<Hero> getAllHeroes() {
+    public static List<Hero> getAllHeroes() {
         return allHeroes;
+    }
+
+    public static void clearHeroList(){
+        allHeroes.clear();
     }
 
     public int getHeroID() {
