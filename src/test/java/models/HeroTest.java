@@ -31,10 +31,24 @@ public class HeroTest {
     }
 
     @Test
-    public void getHeroAge_true() {
+    public void getHeroAge_int() {
         Hero newHero = setupNewHero();
         assertEquals(40,newHero.getAge());
     }
+
+    @Test
+    public void getHeroPower_true() {
+        Hero newHero = setupNewHero();
+        assertTrue(newHero.getPower() instanceof String);
+    }
+
+    @Test
+    public void getHeroWeakness_true() {
+        Hero newHero = setupNewHero();
+        assertTrue(newHero.getWeakness() instanceof String);
+    }
+
+
 
     @After
     public void tearDown() throws Exception {

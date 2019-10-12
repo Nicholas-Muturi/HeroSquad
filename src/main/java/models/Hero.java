@@ -6,22 +6,22 @@ import java.util.List;
 public class Hero {
     private String name;
     private int age;
-    private String specialPower;
+    private String power;
     private String weakness;
     private List<Hero> allHeroes = new ArrayList<>();
     private int heroID;
 
-    public Hero(String name, int age, String specialPower, String weakness) {
+    public Hero(String name, int age, String power, String weakness) {
         this.name = name;
         this.age = age;
-        this.specialPower = specialPower;
+        this.power = power;
         this.weakness = weakness;
         this.allHeroes.add(this);
         this.heroID = allHeroes.size();
     }
 
-    public void setSpecialPower(String specialPower) {
-        this.specialPower = specialPower;
+    public void setPower(String power) {
+        this.power = power;
     }
 
     public void setWeakness(String weakness) {
@@ -36,8 +36,8 @@ public class Hero {
         return age;
     }
 
-    public String getSpecialPower() {
-        return specialPower;
+    public String getPower() {
+        return power;
     }
 
     public String getWeakness() {
