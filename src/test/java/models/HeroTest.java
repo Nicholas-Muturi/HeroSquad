@@ -36,7 +36,7 @@ public class HeroTest {
     @Test
     public void getHeroAge_int() {
         Hero newHero = setupNewHero();
-        assertEquals(40,newHero.getAge());
+        assertEquals(45, newHero.getAge());
     }
 
     @Test
@@ -74,6 +74,13 @@ public class HeroTest {
         Hero.deleteHero(anotherNewHero.getHeroID());
         assertFalse(Hero.getHeroRegistry().contains(anotherNewHero));
         assertEquals(3, Hero.getHeroRegistry().get(1).getHeroID());
+    }
+
+    @Test
+    public void catchHeroDuplication_int() {
+        Hero newHero = setupNewHero();
+        Hero anotherNewHero = setupNewHero();
+        assertEquals(1, Hero.getHeroRegistry().size());
     }
 
     @After
