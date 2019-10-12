@@ -48,6 +48,10 @@ public class Hero {
         return heroRegistry;
     }
 
+    public static Hero findHero(int searchID) {
+        return heroRegistry.get(searchID - 1);
+    }
+
     public static void clearHeroRegistry(){
         heroRegistry.clear();
     }

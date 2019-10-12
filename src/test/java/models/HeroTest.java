@@ -56,6 +56,13 @@ public class HeroTest {
         assertTrue(Hero.getHeroRegistry().contains(anotherNewHero));
     }
 
+    @Test
+    public void findHero_searchForHeroById_String() {
+        Hero newHero = setupNewHero();
+        Hero anotherNewHero = new Hero("Superman", 180, "Almost everything", "Kryptonite");
+        assertEquals("Batman", Hero.findHero(1).getName());
+    }
+
     @After
     public void tearDown() throws Exception {
         Hero.clearHeroRegistry();
