@@ -15,7 +15,7 @@ public class HeroTest {
     }
 
     private Hero setupNewHero(){
-        return new Hero ("Batman",40,"Money","Loneliness");
+        return new Hero ("Batman",45,"Money","Loneliness");
     }
 
     @Test
@@ -48,10 +48,16 @@ public class HeroTest {
         assertTrue(newHero.getWeakness() instanceof String);
     }
 
-
+    @Test
+    public void getHeroList_storeTwoHeroes_true() {
+        Hero newHero = setupNewHero();
+        Hero anotherNewHero = new Hero("Superman",180,"Everything","Kryptonite");
+        assertTrue(Hero.getAllHeroes().contains(newHero));
+        assertTrue(Hero.getAllHeroes().contains(anotherNewHero));
+    }
 
     @After
     public void tearDown() throws Exception {
-
+        Hero.clearHeroList();
     }
 }
