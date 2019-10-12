@@ -51,13 +51,13 @@ public class HeroTest {
     @Test
     public void getHeroList_storeTwoHeroes_true() {
         Hero newHero = setupNewHero();
-        Hero anotherNewHero = new Hero("Superman",180,"Everything","Kryptonite");
-        assertTrue(Hero.getAllHeroes().contains(newHero));
-        assertTrue(Hero.getAllHeroes().contains(anotherNewHero));
+        Hero anotherNewHero = new Hero("Superman",180,"Almost everything","Kryptonite");
+        assertTrue(Hero.getHeroRegistry().contains(newHero));
+        assertTrue(Hero.getHeroRegistry().contains(anotherNewHero));
     }
 
     @After
     public void tearDown() throws Exception {
-        Hero.clearHeroList();
+        Hero.clearHeroRegistry();
     }
 }
