@@ -65,8 +65,42 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: new squad page
+        get("/squads/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Hero> squadlessHeroes = new ArrayList<Hero>();
+            for (Hero hero : Hero.getHeroRegistry()) {
+                if (hero.getSquadAlliance().equals("")) {
+                    squadlessHeroes.add(hero);
+                }
+            }
+            model.put("squadlessHeroes", squadlessHeroes);
+            return new ModelAndView(model, "squad-form.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //post: create a new squad page - redirect to success page
+        post("/squads/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Hero> squadlessHeroes = new ArrayList<Hero>();
+            for (Hero hero : Hero.getHeroRegistry()) {
+                if (hero.getSquadAlliance().equals("")) {
+                    squadlessHeroes.add(hero);
+                }
+            }
+
+            String name = request.queryParams("name");
+            String cause = request.queryParams("cause");
+            String heroName = request.queryParams("founder");
+            Hero squadFounder = null;
+            for (Hero hero : squadlessHeroes) {
+                if (hero.getName().equalsIgnoreCase(heroName)) {
+                    squadFounder = hero;
+                    break;
+                }
+            }
+            assert squadFounder != null;
+            Squad newSquad = new Squad(name, cause, squadFounder);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //get: retrieve all heroes and squads
         get("/heroes", (request, response) -> {
