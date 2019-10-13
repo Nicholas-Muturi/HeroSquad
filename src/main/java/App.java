@@ -105,6 +105,8 @@ public class App {
         //get: retrieve all heroes and squads
         get("/heroes", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
+            model.put("allHeroes", Hero.getHeroRegistry());
+            model.put("allSquads", Squad.getAllSquads());
             model.put("uniqueId", request.session().attribute("uniqueId"));
             return new ModelAndView(model, "heroes.hbs");
         }, new HandlebarsTemplateEngine());
@@ -127,8 +129,6 @@ public class App {
             model.put("uniqueId", request.session().attribute("uniqueId"));
             return new ModelAndView(model, "squad-detail.hbs");
         }, new HandlebarsTemplateEngine());
-
-
 
     }
 }

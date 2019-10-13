@@ -93,6 +93,10 @@ public class Squad {
         squadList.clear();
     }
 
+    public static Squad findSquad(int searchId) {
+        return squadList.get(searchId - 1);
+    }
+
     private static void crossCheckHero(int idToCheck) {
         for (Hero hero : Hero.getHeroRegistry()) {
             if (hero.getHeroID() == idToCheck) {
