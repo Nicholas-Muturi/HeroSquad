@@ -63,7 +63,7 @@ public class Squad {
 
         for (Squad squad : squadList) {
             if (newSquad.squadName.equalsIgnoreCase(squad.squadName)) {
-                if (!hero.getSquadAlliance().equalsIgnoreCase("None")) {
+                if (!hero.getSquadAlliance().equalsIgnoreCase("")) {
                     //IF HERO EXISTED IN PREVIOUS SQUAD
                     //noinspection ConstantConditions
                     currentSquad.heroMembers.remove(hero.getName());

@@ -1,16 +1,35 @@
 body {
-    /*background-image: url('images/polka.jpg');*/
+    background-image: url('images/polka.jpg');
+    /*background: linear-gradient(90deg, rgba(181,194,202,1) 0%, rgba(248,249,250,1) 50%, rgba(181,194,202,1) 100%);
+    /*background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(142,141,141,1) 50%, rgba(0,0,0,1) 100%);*/
     font-family: 'Poppins', sans-serif;
 }
 
+.nav-item {
+    color: #020202;
+    font-weight: 500;
+}
+
 .container {
-    background: #f8f9fa;
+    background: rgba(255,255,255,0.9);
+    padding-top: 4rem;
+    padding-bottom: 1rem;
     margin-bottom: 0px;
 }
 
 #navLogo {
     margin-right: 15px;
 }
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.active {
+    text-decoration: underline;
+    text-decoration-size: 2px;
+}
+
 
 .jumbotron {
     border-radius: 0px;

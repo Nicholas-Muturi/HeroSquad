@@ -25,7 +25,7 @@ public class Hero {
         } else {
             heroRegistry.add(this);
             this.heroID = heroRegistry.size();
-            this.squadAlliance = "None";
+            this.squadAlliance = "";
         }
 
     }
