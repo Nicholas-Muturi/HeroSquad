@@ -8,9 +8,10 @@ public class Squad {
     private String squadName;
     private String cause;
     private static boolean isRegisteredHero = false;
-    private List<Object> heroMembers = new ArrayList<>();
+    private List<Hero> heroMembers = new ArrayList<>();
     private static List<Squad> squadList = new ArrayList<>();
     private int squadId;
+    private boolean isSquadFull = false;
 
     public Squad(String name, String cause, Hero hero) {
         this.squadName = name.trim();
@@ -36,15 +37,18 @@ public class Squad {
     }
 
     public void addMembers(Hero hero) {
-        if (heroMembers.size() < 7) {
-            heroMembers.add(hero);
+        if (heroMembers.size() >= 3) {
+            isSquadFull = true;
         } else {
-            System.out.println("LIMIT REACHED!!!");
+            heroMembers.add(hero);
         }
-
     }
 
-    public List<Object> getMembers() {
+    public boolean getSquadFull() {
+        return isSquadFull;
+    }
+
+    public List<Hero> getMembers() {
         return heroMembers;
     }
 
@@ -52,31 +56,35 @@ public class Squad {
         return cause;
     }
 
-    public static void changeHeroSquad(Hero hero, Squad newSquad) {
-        Squad currentSquad = null;
-        for (Squad squad : squadList) {
-            if (hero.getSquadAlliance().equalsIgnoreCase(squad.squadName)) {
-                currentSquad = squad;
-                break;
-            }
-        }
-
-        for (Squad squad : squadList) {
-            if (newSquad.squadName.equalsIgnoreCase(squad.squadName)) {
-                if (!hero.getSquadAlliance().equalsIgnoreCase("")) {
-                    //IF HERO EXISTED IN PREVIOUS SQUAD
-                    //noinspection ConstantConditions
-                    currentSquad.heroMembers.remove(hero.getName());
-                    newSquad.heroMembers.add(hero.getName());
-                    hero.setSquadAlliance(newSquad.squadName);
+    public void changeHeroSquad(Hero hero, Squad newSquad) {
+        if (heroMembers.size() >= 3) {
+            isSquadFull = true;
+        } else {
+            Squad currentSquad = null;
+            for (Squad squad : squadList) {
+                if (hero.getSquadAlliance().equalsIgnoreCase(squad.squadName)) {
+                    currentSquad = squad;
                     break;
-                } else {
-                    //IF HERO HAD NO ALLIANCE
-                    newSquad.heroMembers.add(hero.getName());
-                    hero.setSquadAlliance(newSquad.squadName);
                 }
-            } else {
-                System.out.println("Squad Doesn't exist");
+            }
+
+            for (Squad squad : squadList) {
+                if (newSquad.squadName.equalsIgnoreCase(squad.squadName)) {
+                    if (!hero.getSquadAlliance().equalsIgnoreCase("")) {
+                        //IF HERO EXISTED IN PREVIOUS SQUAD
+                        //noinspection ConstantConditions
+                        currentSquad.heroMembers.remove(hero);
+                        newSquad.heroMembers.add(hero);
+                        hero.setSquadAlliance(newSquad.squadName);
+                        break;
+                    } else {
+                        //IF HERO HAD NO ALLIANCE
+                        newSquad.heroMembers.add(hero);
+                        hero.setSquadAlliance(newSquad.squadName);
+                    }
+                } else {
+                    System.out.println("Squad Doesn't exist");
+                }
             }
         }
     }

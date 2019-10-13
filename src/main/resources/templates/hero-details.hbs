@@ -9,6 +9,11 @@
 {{#partial "content"}}
     <div class="text-center">
         <h2><u>{{hero.name}}</u></h2>
+        {{#if hero.squadAlliance}}
+            <h4><b>Squad: </b>{{hero.squadAlliance}}</h4>
+        {{else}}
+            <h4><b>Squad: </b>None</h4>
+        {{/if}}
         <div class="row">
             <div class="col-md-4">
                 <h5>Age</h5>

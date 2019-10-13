@@ -12,7 +12,7 @@
         <div class="col-md-6 text-center">
             <h5 class="text-center"><u>Heroes</u></h5>
             {{#if allHeroes}}
-                <div class="card" style="width: 20rem; margin: auto;">
+                <div class="card heroSquadCard">
                     <ul class="list-group list-group-flush">
                         {{#each allHeroes}}
                             <li class="list-group-item">{{name}} - <a href="/heroes/{{heroID}}">View Details</a></li>
@@ -27,7 +27,7 @@
         <div class="col-md-6 text-center">
             <h5><u>Squads</u></h5>
             {{#if allSquads}}
-                <div class="card" style="width: 20rem; margin: auto;">
+                <div class="card heroSquadCard">
                     <ul class="list-group list-group-flush">
                         {{#each allSquads}}
                             <li class="list-group-item">{{name}} - <a href="/squads/{{squadId}}">View Details</a></li>

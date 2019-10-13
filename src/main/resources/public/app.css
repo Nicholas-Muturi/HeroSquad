@@ -70,3 +70,7 @@ body {
 
 
 /*--------------------- HEROES.HBS --------------------- */
+.heroSquadCard {
+    width: 20rem;
+    margin: auto;
+}

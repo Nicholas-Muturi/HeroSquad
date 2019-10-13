@@ -64,6 +64,21 @@ public class SquadTest {
     }
 
     @Test
+    public void addHero_NotExeedLimitOf6_int() {
+        /* Change back limit to 1 before testing again */
+        Squad squad = setupNewSquad(setupNewHero());
+        squad.addMembers(setupHero2());
+        squad.addMembers(new Hero("1", 1, "1", "1"));
+        squad.addMembers(new Hero("2", 1, "1", "1"));
+        squad.addMembers(new Hero("3", 1, "1", "1"));
+        squad.addMembers(new Hero("4", 1, "1", "1"));
+        squad.addMembers(new Hero("5", 1, "1", "1"));
+        squad.addMembers(new Hero("6", 1, "1", "1"));
+        assertEquals(3, squad.getMembers().size());
+        assertTrue(squad.getSquadFull());
+    }
+
+    @Test
     public void moveHeroToAnotherSquad() {
         Hero.clearHeroRegistry();
         Hero hero1 = setupNewHero();
@@ -75,7 +90,7 @@ public class SquadTest {
         System.out.println(squad2.getMembers());
 
         assertEquals(1, squad.getMembers().size());
-        Squad.changeHeroSquad(hero1, squad2);
+        squad.changeHeroSquad(hero1, squad2);
 
         System.out.println("------------ After-----------");
         System.out.println(squad.getMembers());

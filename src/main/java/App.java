@@ -1,6 +1,5 @@
 import static spark.Spark.*;
 
-import com.github.jknack.handlebars.Handlebars;
 import models.Hero;
 import models.Squad;
 import spark.ModelAndView;
@@ -11,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
@@ -67,7 +67,7 @@ public class App {
         //get: new squad page
         get("/squads/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Hero> squadlessHeroes = new ArrayList<Hero>();
+            List<Hero> squadlessHeroes = new ArrayList<>();
             for (Hero hero : Hero.getHeroRegistry()) {
                 if (hero.getSquadAlliance().equals("")) {
                     squadlessHeroes.add(hero);
@@ -80,7 +80,7 @@ public class App {
         //post: create a new squad page - redirect to success page
         post("/squads/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Hero> squadlessHeroes = new ArrayList<Hero>();
+            List<Hero> squadlessHeroes = new ArrayList<>();
             for (Hero hero : Hero.getHeroRegistry()) {
                 if (hero.getSquadAlliance().equals("")) {
                     squadlessHeroes.add(hero);
@@ -131,5 +131,42 @@ public class App {
             return new ModelAndView(model, "squad-details.hbs");
         }, new HandlebarsTemplateEngine());
 
-    }
+        //get: update hero details & squad
+
+        //Post: Update squad members by recruiting
+        post("/squads/:id/update", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Squad foundSquad = Squad.findSquad(itemId);
+            String heroName = request.queryParams("addHero");
+            Hero heroToAdd = null;
+            for (Hero hero : Hero.getHeroRegistry()) {
+                if (hero.getName().equalsIgnoreCase(heroName)) {
+                    heroToAdd = hero;
+                    break;
+                }
+            }
+            foundSquad.changeHeroSquad(heroToAdd, foundSquad);
+            model.put("uniqueId", request.session().attribute("uniqueId"));
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: Update squad
+        get("/squads/:id/update", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Squad foundSquad = Squad.findSquad(itemId);
+            List<Hero> nonMembers = new ArrayList<>();
+            for (Hero hero : Hero.getHeroRegistry()) {
+                if (!hero.getSquadAlliance().equalsIgnoreCase(foundSquad.getName())) {
+                    nonMembers.add(hero);
+                }
+            }
+            model.put("nonMembers", nonMembers);
+            model.put("squad", foundSquad);
+            model.put("uniqueId", request.session().attribute("uniqueId"));
+            return new ModelAndView(model, "update-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+    }//end
 }
