@@ -131,7 +131,27 @@ public class App {
             return new ModelAndView(model, "squad-details.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //get: update hero details & squad
+        //Post: update hero details
+        post("/heroes/:id/update", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Hero updateHero = Hero.findHero(itemId);
+            updateHero.updateName(request.queryParams("name"));
+            updateHero.updateAge(Integer.parseInt(request.queryParams("age")));
+            updateHero.updatePower(request.queryParams("power"));
+            updateHero.updateWeakness(request.queryParams("weakness"));
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: update hero details
+        get("/heroes/:id/update", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Hero updateHero = Hero.findHero(itemId);
+            model.put("updateHero", updateHero);
+            model.put("uniqueId", request.session().attribute("uniqueId"));
+            return new ModelAndView(model, "hero-form.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //Post: Update squad members by recruiting
         post("/squads/:id/update", (request, response) -> {

@@ -89,6 +89,23 @@ public class Hero {
         this.squadAlliance = newSquad;
     }
 
+    public void updateName(String newName) {
+        this.name = newName;
+    }
+
+    public void updateAge(int newAge) {
+        this.age = newAge;
+    }
+
+    public void updatePower(String newPower) {
+        this.power = newPower;
+    }
+
+    public void updateWeakness(String newWeakness) {
+        this.weakness = newWeakness;
+    }
+
+
     public static void deleteHero(int searchID) {
         heroRegistry.remove(searchID - 1);
     }

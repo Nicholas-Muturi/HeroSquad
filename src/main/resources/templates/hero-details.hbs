@@ -10,9 +10,9 @@
     <div class="text-center">
         <h2><u>{{hero.name}}</u></h2>
         {{#if hero.squadAlliance}}
-            <h4><b>Squad: </b>{{hero.squadAlliance}}</h4>
+            <h6><b>Squad: </b>{{hero.squadAlliance}}</h6>
         {{else}}
-            <h4><b>Squad: </b>None</h4>
+            <h6><b>Squad: </b>None</h6>
         {{/if}}
         <div class="row">
             <div class="col-md-4">
@@ -28,6 +28,7 @@
                 <p>{{hero.weakness}}</p>
             </div>
         </div>
+        <a class="btn btn-outline-primary" href="/heroes/{{hero.heroID}}/update">Update</a>
     </div>
 {{/partial}}
 {{> layout.hbs}}

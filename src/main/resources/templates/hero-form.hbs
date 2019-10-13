@@ -8,25 +8,51 @@
 {{#partial "content"}}
     <h2 class="text-center">Recruit a New Hero</h2>
     <div id="newHeroForm">
-        <form action="/heroes/new" method="post">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" class="form-control" min="0">
-            </div>
-            <div class="form-group">
-                <label for="power">Strength</label>
-                <input type="text" id="power" name="power" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="weakness">Weakness</label>
-                <input type="text" id="weakness" name="weakness" class="form-control">
-            </div>
-            <button class="btn btn-outline-secondary" type="submit">Save</button>
-        </form>
+        {{#if updateHero}}
+            <form action="/heroes/{{updateHero.heroID}}/update" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" value="{{updateHero.name}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" class="form-control" min="0" value="{{updateHero.age}}"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="power">Strength</label>
+                    <input type="text" id="power" name="power" class="form-control" value="{{updateHero.power}}"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="weakness">Weakness</label>
+                    <input type="text" id="weakness" name="weakness" class="form-control"
+                           value="{{updateHero.weakness}}"
+                           required>
+                </div>
+                <button class="btn btn-outline-secondary" type="submit">Save</button>
+            </form>
+        {{else}}
+            <form action="/heroes/new" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" class="form-control" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="power">Strength</label>
+                    <input type="text" id="power" name="power" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="weakness">Weakness</label>
+                    <input type="text" id="weakness" name="weakness" class="form-control" required>
+                </div>
+                <button class="btn btn-outline-secondary" type="submit">Save</button>
+            </form>
+        {{/if}}
     </div>
 {{/partial}}
 
