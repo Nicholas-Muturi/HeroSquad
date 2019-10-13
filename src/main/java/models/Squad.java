@@ -95,6 +95,10 @@ public class Squad {
         }
         hero.updateSquad("");
         heroMembers.remove(hero);
+
+        if (heroMembers.isEmpty()) {
+            selfDelete();
+        }
     }
 
     public void clearMemberLists() {
@@ -111,6 +115,10 @@ public class Squad {
 
     public static Squad findSquad(int searchId) {
         return squadList.get(searchId - 1);
+    }
+
+    private void selfDelete() {
+        Squad.squadList.remove(this);
     }
 
     private static void crossCheckHero(int idToCheck) {
