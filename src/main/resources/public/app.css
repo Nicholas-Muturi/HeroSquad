@@ -1,0 +1,53 @@
+body {
+    /*background-image: url('images/polka.jpg');*/
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    background: #f8f9fa;
+    margin-bottom: 0px;
+}
+
+#navLogo {
+    margin-right: 15px;
+}
+
+.jumbotron {
+    border-radius: 0px;
+    background-image: url('images/comicPolka.jpg');
+    font-family: 'Bangers', cursive;
+    color: white;
+}
+
+.jumbotron h1 {
+    font-size: 60px;
+}
+
+/*--------------------- INDEX.HBS --------------------- */
+#session-form {
+    margin-bottom: 20px;
+}
+
+#session-form form{
+    margin: 15px auto 15px auto;
+}
+
+#session-form button {
+    display: block;
+    margin: 10px auto;
+}
+
+#session-form h3, #returning-agent h2 {
+    font-family: 'Acme', sans-serif;
+}
+
+#returning-agent h2 {
+    margin-bottom: 20px;
+}
+
+#newsFeed {
+    margin: 20px auto;
+}
+
+
+/*--------------------- HEROES.HBS --------------------- */
