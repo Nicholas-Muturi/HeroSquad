@@ -188,5 +188,34 @@ public class App {
             return new ModelAndView(model, "update-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //Post: Update squad by removal of members when full
+        post("/squads/:id/remove", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Squad foundSquad = Squad.findSquad(itemId);
+            String heroName = request.queryParams("removeHero");
+            Hero heroToRemove = null;
+            for (Hero hero : Hero.getHeroRegistry()) {
+                if (hero.getName().equalsIgnoreCase(heroName)) {
+                    heroToRemove = hero;
+                    break;
+                }
+            }
+            foundSquad.removeMember(heroToRemove);
+            model.put("uniqueId", request.session().attribute("uniqueId"));
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: get list of current members in squad
+        get("/squads/:id/remove", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Squad foundSquad = Squad.findSquad(itemId);
+            model.put("members", foundSquad.getMembers());
+            model.put("squad", foundSquad);
+            model.put("uniqueId", request.session().attribute("uniqueId"));
+            return new ModelAndView(model, "update-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
     }//end
 }

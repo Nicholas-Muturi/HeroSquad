@@ -74,11 +74,14 @@ public class Hero {
         return heroRegistry.get(searchID - 1);
     }
 
-    public static void findDuplicateHero(Hero newInsertion) {
+    private static void findDuplicateHero(Hero newInsertion) {
         for (Hero hero : heroRegistry) {
             if (newInsertion.name.equalsIgnoreCase(hero.name) &&
                     newInsertion.power.equalsIgnoreCase(hero.power) &&
                     newInsertion.weakness.equalsIgnoreCase(hero.weakness)) {
+                duplicate = true;
+                break;
+            } else if (newInsertion.name.equalsIgnoreCase(hero.name)) {
                 duplicate = true;
                 break;
             }
@@ -104,7 +107,6 @@ public class Hero {
     public void updateWeakness(String newWeakness) {
         this.weakness = newWeakness;
     }
-
 
     public static void deleteHero(int searchID) {
         heroRegistry.remove(searchID - 1);

@@ -4,8 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("ALL")
 public class SquadTest {
@@ -76,6 +75,16 @@ public class SquadTest {
         squad.addMembers(new Hero("6", 1, "1", "1"));
         assertEquals(3, squad.getMembers().size());
         assertTrue(squad.getSquadFull());
+    }
+
+    @Test
+    public void removeHeroMember() {
+        Hero hero1 = setupNewHero();
+        Hero hero2 = setupHero2();
+        Squad squad = setupNewSquad(hero1);
+        squad.addMembers(hero2);
+        squad.removeMember(hero1);
+        assertFalse(squad.getMembers().contains(hero1));
     }
 
     @Test

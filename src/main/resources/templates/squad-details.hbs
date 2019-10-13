@@ -16,9 +16,9 @@
     </ul>
     {{#if squad.squadFull}}
         <p class="text-center">Squad Full</p>
-        <!--        <a class="btn btn-outline-primary" href="/squads/{{squad.squadId}}/update">Remove Members</a>-->
     {{else}}
         <a class="btn btn-outline-primary" href="/squads/{{squad.squadId}}/update">Recruit</a>
     {{/if}}
+    <a class="btn btn-outline-danger" href="/squads/{{squad.squadId}}/remove">Remove Members</a>
 {{/partial}}
 {{> layout.hbs}}

@@ -75,7 +75,7 @@ public class Squad {
                         //noinspection ConstantConditions
                         currentSquad.heroMembers.remove(hero);
                         newSquad.heroMembers.add(hero);
-                        hero.setSquadAlliance(newSquad.squadName);
+                        hero.updateSquad(newSquad.squadName);
                         break;
                     } else {
                         //IF HERO HAD NO ALLIANCE
@@ -95,7 +95,6 @@ public class Squad {
         }
         hero.updateSquad("");
         heroMembers.remove(hero);
-
     }
 
     public void clearMemberLists() {
