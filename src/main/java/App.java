@@ -108,7 +108,7 @@ public class App {
             model.put("allHeroes", Hero.getHeroRegistry());
             model.put("allSquads", Squad.getAllSquads());
             model.put("uniqueId", request.session().attribute("uniqueId"));
-            return new ModelAndView(model, "heroes.hbs");
+            return new ModelAndView(model, "heroes-squads.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: each hero detail page
@@ -118,16 +118,17 @@ public class App {
             Hero foundHero = Hero.findHero(itemId);
             model.put("hero", foundHero);
             model.put("uniqueId", request.session().attribute("uniqueId"));
-            return new ModelAndView(model, "hero-detail.hbs");
+            return new ModelAndView(model, "hero-details.hbs");
         }, new HandlebarsTemplateEngine());
 
         //get: each squad detail page
         get("/squads/:id", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             int itemId = Integer.parseInt(request.params(":id"));
-            /*Squad foundSquad;*/
+            Squad foundSquad = Squad.findSquad(itemId);
+            model.put("squad", foundSquad);
             model.put("uniqueId", request.session().attribute("uniqueId"));
-            return new ModelAndView(model, "squad-detail.hbs");
+            return new ModelAndView(model, "squad-details.hbs");
         }, new HandlebarsTemplateEngine());
 
     }

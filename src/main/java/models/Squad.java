@@ -8,7 +8,7 @@ public class Squad {
     private String squadName;
     private String cause;
     private static boolean isRegisteredHero = false;
-    private List<String> heroMembers = new ArrayList<>();
+    private List<Object> heroMembers = new ArrayList<>();
     private static List<Squad> squadList = new ArrayList<>();
     private int squadId;
 
@@ -19,7 +19,7 @@ public class Squad {
 
         if (isRegisteredHero) {
             hero.setSquadAlliance(squadName);
-            heroMembers.add(hero.getName());
+            heroMembers.add(hero);
             squadList.add(this);
             this.squadId = squadList.size();
         } else {
@@ -37,14 +37,14 @@ public class Squad {
 
     public void addMembers(Hero hero) {
         if (heroMembers.size() < 7) {
-            heroMembers.add(hero.getName());
+            heroMembers.add(hero);
         } else {
             System.out.println("LIMIT REACHED!!!");
         }
 
     }
 
-    public List<String> getMembers() {
+    public List<Object> getMembers() {
         return heroMembers;
     }
 
