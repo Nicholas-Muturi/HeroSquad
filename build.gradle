@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
 }
+
 applicationName = "herosquad"
 mainClassName = 'App'
 group 'com.moringa.herosquad'
