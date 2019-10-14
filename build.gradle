@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
 }
-applicationName = "hero-squad"
+applicationName = "herosquad"
 mainClassName = 'App'
 group 'com.moringa.herosquad'
 version '1.0-SNAPSHOT'
@@ -20,4 +20,5 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.21'
 }
 
-task stage(dependsOn: ['clean', 'installDist'])
+defaultTasks = ['clean']
+task stage(dependsOn: ['clean', 'installApp'])

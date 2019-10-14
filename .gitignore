@@ -40,7 +40,6 @@ build/
 out/
 out
 .gradle
-gradle/wrapper/gradle-wrapper.properties
 gradlew.bat
 gradlew
 settings.gradle
