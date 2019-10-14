@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-applicationName = "herosquad"
+applicationName = "hero-squad"
 mainClassName = 'App'
 group 'com.moringa.herosquad'
 version '1.0-SNAPSHOT'

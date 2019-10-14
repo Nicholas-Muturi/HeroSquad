@@ -1,1 +1,1 @@
-web: ./build/install/herosquad/bin/herosquad
+web: ./build/install/hero-squad/bin/hero-squad
