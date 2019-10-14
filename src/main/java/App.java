@@ -164,6 +164,15 @@ public class App {
             return new ModelAndView(model, "hero-form.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //get: remove single hero
+        get("/heroes/:id/remove", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int itemId = Integer.parseInt(request.params(":id"));
+            Hero.deleteHero(itemId);
+            model.put("uniqueId", request.session().attribute("uniqueId"));
+            return new ModelAndView(model, "heroes-squads.hbs");
+        }, new HandlebarsTemplateEngine());
+
         //Post: Update squad members by recruiting
         post("/squads/:id/update", (request, response) -> {
             Map<String, Object> model = new HashMap<>();

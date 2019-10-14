@@ -109,6 +109,20 @@ public class Hero {
     }
 
     public static void deleteHero(int searchID) {
+        Hero heroToDelete = findHero(searchID);
+        if (!heroToDelete.getSquadAlliance().equals("")) {
+            // IF this hero is in a squad, remove him from squad first
+            Squad currentSquad = null;
+            String currentSquadName = heroToDelete.getSquadAlliance();
+            for (Squad squad : Squad.getAllSquads()) {
+                if (squad.getName().equalsIgnoreCase(currentSquadName)) {
+                    currentSquad = squad;
+                    break;
+                }
+            }
+            assert currentSquad != null;
+            currentSquad.removeMember(heroToDelete);
+        }
         heroRegistry.remove(searchID - 1);
     }
 
