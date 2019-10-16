@@ -73,3 +73,13 @@ body {
     width: 20rem;
     margin: auto;
 }
+
+/*--------------------- FAQ.HBS --------------------- */
+#faqDiv #inner-ordered-list {
+ list-style-type: lower-roman;
+ margin: 5px auto;
+}
+
+#faqFooter {
+    margin: 20px auto;
+}

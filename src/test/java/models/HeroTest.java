@@ -76,15 +76,6 @@ public class HeroTest {
         assertEquals(3, Hero.getHeroRegistry().get(1).getHeroID());
     }
 
-/*    @Test
-    public void preventHeroDuplication_int() {
-        *//* TRANSFER THIS LOGIC TO APP.JAVA *//*
-        Hero newHero = setupNewHero();
-        Hero newHero2 = setupNewHero();
-        System.out.println(Hero.getHeroRegistry().size());
-        assertEquals(1, Hero.getHeroRegistry().size());
-    }*/
-
     @After
     public void tearDown() throws Exception {
         Hero.clearHeroRegistry();
